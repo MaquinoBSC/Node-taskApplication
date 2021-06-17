@@ -1,4 +1,5 @@
 require('colors');
+const { guardarDB } = require('./helpers/guardarArchivo');
 //const {mostrarMenu, pausa}= require('./helpers/mensajes');
 
 //Importar las funciones que usan inquirer
@@ -18,14 +19,17 @@ const main = async() =>{
             case '1':
                 const desc= await leerInput('Descripcion: ');
                 tareas.crearTarea(desc);
+
                 break;
         
             case '2':
-                console.log(tareas._listado);
+                console.log(tareas.listadoArray);;
                 break;
             default:
                 break;
         }
+
+        guardarDB(tareas.listadoArray);
 
         if(opt !== '0') await pausa();
         
