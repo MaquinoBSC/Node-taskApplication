@@ -12,12 +12,14 @@ const main = async() =>{
     let opt= '';
     
     const tareas= new Tareas();
+    
+    //leemos las tareas almacenadas en la DB
     const tareasDB= leerDB();
 
     if(tareasDB){
-        //Establcer las tareas
+        //Establecer las tareas
+        tareas.cargarTareas(tareasDB);
     }
-    await pausa();
 
     do {
         opt= await inquirerMenu();

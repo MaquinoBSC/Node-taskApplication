@@ -21,12 +21,18 @@ class Tareas {
         this._listado= {};
     }
 
+    //Funcion que recibe las tareas que fueron cargadas de la DB y las carga a la aplicacion
+    cargarTareas(tareas= []){
+        tareas.forEach((tarea)=> {
+            this._listado[tarea.id]= tarea;
+        })
+    }
+
     crearTarea(desc= ''){
         const tarea= new Tarea(desc);
 
         this._listado[tarea.id]= tarea;//AUnque _listado es un objeto, podemos usar [] para referirnos o crear alguna prorpiedad del objeto
     }
-
 }
 
 module.exports= Tareas;
