@@ -1,5 +1,8 @@
 const Tarea= require('./tarea');
 
+
+//clase que envuelve la estructura de la clase tarea
+//Por medio de esta clase podremos crear tareas, listar tareas,
 class Tareas {
     _listado= {};
 

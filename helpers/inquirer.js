@@ -1,6 +1,7 @@
 const inquirer= require('inquirer');
 require('colors');
 
+//Esta constante almacena el menu que vamos a mostrar en nuestra aplicacion
 const preguntas= [
     {
         type: 'list',
@@ -39,6 +40,7 @@ const preguntas= [
     }
 ]
 
+//funcion que mostrara el menu utilizando inquirer
 const inquirerMenu= async ()=> {
     console.clear();
 
@@ -46,11 +48,13 @@ const inquirerMenu= async ()=> {
     console.log("   Seleccione una opcion   ".green);
     console.log("===========================\n".green);
 
+    //Aqui asignamos nuestra constante que muestra el menu
     const {opcion}= await inquirer.prompt(preguntas);//inquirer devuelve un objeto, por eso se hace destructuring
 
     return opcion;
 }
 
+//funcion que hace una pausa en la aplicacion, el usuario debe presionar un atecla para seguir con la ejecucion
 const pausa= async()=> {
     console.log('\n');
 
@@ -63,6 +67,7 @@ const pausa= async()=> {
     ])
 }
 
+//funcion que lee el dato que ingresa el usuario en la aplicacion
 const leerInput= async(message)=> {
     const question= {
         type: 'input',

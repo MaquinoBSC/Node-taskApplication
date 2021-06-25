@@ -1,6 +1,6 @@
 const { v4 : uuidv4 }= require('uuid');
 
-
+//clase que genera la estructura de una tarea
 class Tarea {
     id= '';
     desc= '';

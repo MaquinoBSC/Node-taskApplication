@@ -1,16 +1,23 @@
 require('colors');
-const { guardarDB } = require('./helpers/guardarArchivo');
+const { guardarDB, leerDB } = require('./helpers/guardarArchivo');
 //const {mostrarMenu, pausa}= require('./helpers/mensajes');
 
 //Importar las funciones que usan inquirer
 const {inquirerMenu, pausa, leerInput} = require('./helpers/inquirer');
+//importamos la clase Tareas, pues con esta hacemos el CRUD de tareas
 const Tareas = require('./models/tareas');
 
 
 const main = async() =>{
     let opt= '';
-    //instancia de la clase que se encarga de las operaciones con las tareas
+    
     const tareas= new Tareas();
+    const tareasDB= leerDB();
+
+    if(tareasDB){
+        //Establcer las tareas
+    }
+    await pausa();
 
     do {
         opt= await inquirerMenu();
