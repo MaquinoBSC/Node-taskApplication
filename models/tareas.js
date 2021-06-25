@@ -1,3 +1,4 @@
+const colors= require('colors');
 const Tarea= require('./tarea');
 
 
@@ -32,6 +33,19 @@ class Tareas {
         const tarea= new Tarea(desc);
 
         this._listado[tarea.id]= tarea;//AUnque _listado es un objeto, podemos usar [] para referirnos o crear alguna prorpiedad del objeto
+    }
+
+    listadoCompleto(){
+        let lista_tareas= [];
+        Object.keys(this._listado).forEach((key)=> {
+            lista_tareas.push(this._listado[key]);
+        });
+
+        console.log('/n');
+        lista_tareas.forEach((tarea, index)=> {
+            let status= tarea.completadoEn ? 'Completada'.green : 'Pendiente'.red;
+            console.log(`${colors.green(index+1)}${'.'.green} ${tarea.desc.green} :: ${status}`);
+        })
     }
 }
 

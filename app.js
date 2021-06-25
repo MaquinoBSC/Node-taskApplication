@@ -12,7 +12,7 @@ const main = async() =>{
     let opt= '';
     
     const tareas= new Tareas();
-    
+
     //leemos las tareas almacenadas en la DB
     const tareasDB= leerDB();
 
@@ -32,7 +32,7 @@ const main = async() =>{
                 break;
         
             case '2':
-                console.log(tareas.listadoArray);;
+                tareas.listadoCompleto();
                 break;
             default:
                 break;
