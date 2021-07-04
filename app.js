@@ -3,7 +3,7 @@ const { guardarDB, leerDB } = require('./helpers/guardarArchivo');
 //const {mostrarMenu, pausa}= require('./helpers/mensajes');
 
 //Importar las funciones que usan inquirer
-const {inquirerMenu, pausa, leerInput} = require('./helpers/inquirer');
+const {inquirerMenu, pausa, leerInput, listadoTareasBorrar, confirmar} = require('./helpers/inquirer');
 //importamos la clase Tareas, pues con esta hacemos el CRUD de tareas
 const Tareas = require('./models/tareas');
 
@@ -42,6 +42,17 @@ const main = async() =>{
             case '4'://listar pendientes
                 tareas.listarPendientesCompletadas(false);
                 break;
+
+            case '6'://Borrar
+                const id= await listadoTareasBorrar(tareas.listadoArray);
+                if(id !== 0){
+                     //Preguntar si estas seguro
+                    const ok= await confirmar('¿Estas seguro?');
+                    if(ok){
+                        tareas.borrarTarea(id);
+                        console.log('Tarea borrada');
+                    }
+                }
 
             default:
                 break;
