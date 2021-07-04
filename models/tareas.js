@@ -47,6 +47,36 @@ class Tareas {
             console.log(`${colors.green(index+1)}${'.'.green} ${tarea.desc.green} :: ${status}`);
         })
     }
+
+    listarPendientesCompletadas(completadas= true){
+        let lista_tares= [];
+        Object.keys(this._listado).forEach((key)=> {
+            lista_tares.push(this._listado[key]);
+        });
+
+        let contador= 0;
+        console.log('\n');
+        lista_tares.forEach((tarea)=> {
+            if(completadas){
+                if(tarea.completadoEn){
+                    contador++;
+                    const desc= tarea.desc;
+                    const status= 'Completada'.green;
+
+                    console.log(`${contador.toString().green + '.'.green} ${desc} :: ${status}`);
+                }
+            }
+            else{
+                if(!tarea.completadoEn){
+                    contador++;
+                    const desc= tarea.desc;
+                    const status= 'Pendiente'.red;
+
+                    console.log(`${contador.toString().green + '.'.green} ${desc} :: ${status}`);
+                }
+            }
+        });
+    }
 }
 
 module.exports= Tareas;
