@@ -3,7 +3,14 @@ const { guardarDB, leerDB } = require('./helpers/guardarArchivo');
 //const {mostrarMenu, pausa}= require('./helpers/mensajes');
 
 //Importar las funciones que usan inquirer
-const {inquirerMenu, pausa, leerInput, listadoTareasBorrar, confirmar} = require('./helpers/inquirer');
+const {
+    inquirerMenu, 
+    pausa, 
+    leerInput, 
+    listadoTareasBorrar, 
+    confirmar,
+    mostrarListadoCheckList
+} = require('./helpers/inquirer');
 //importamos la clase Tareas, pues con esta hacemos el CRUD de tareas
 const Tareas = require('./models/tareas');
 
@@ -41,6 +48,11 @@ const main = async() =>{
 
             case '4'://listar pendientes
                 tareas.listarPendientesCompletadas(false);
+                break;
+
+            case '5'://Completar o dejar pendiente
+                const ids= await mostrarListadoCheckList(tareas.listadoArray);
+                tareas.toggleCompletadas(ids);
                 break;
 
             case '6'://Borrar

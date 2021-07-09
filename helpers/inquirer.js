@@ -125,10 +125,35 @@ const listadoTareasBorrar= async(tareas= [])=> {
     return ok;
  }
 
+ const mostrarListadoCheckList= async(tareas= [])=> {
+    //Vamos a generar una lista dinamica con las tareas que estan actualemnet en la base de datos
+    const choices= tareas.map((tarea, index)=> {
+        const idx= `${index + 1}`.green;
+        return {
+            value: tarea.id,
+            name: `${idx} ${tarea.desc}`,
+            checked: (tarea.completadoEn) ? true : false,
+            //dado que esta funcion mostrara una lista para poder seleccionar o deseleccionar, checked es el status de la tarea en la lista
+        }
+    });
+
+    const preguntas= [
+        {
+            type: 'checkbox',
+            name: 'ids',//Nombre con el identificaremos el dato que el usuario ha ingresado
+            message: 'Seleccione',
+            choices: choices,
+        }
+    ]
+    const {ids}= await inquirer.prompt(preguntas);
+    return ids;
+}
+
 module.exports= {
     inquirerMenu,
     pausa,
     leerInput,
     listadoTareasBorrar,
-    confirmar
+    confirmar,
+    mostrarListadoCheckList,
 }
